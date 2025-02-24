@@ -20,7 +20,7 @@
 //how to add photos to game
 
 /*-------------- Constants -------------*/
-const questions = []
+const questions = 
 
 /*---------- Variables (state) ---------*/
 let score = 0;
