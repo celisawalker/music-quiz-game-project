@@ -15,12 +15,15 @@
 
 
 //SKILLS TO-DO LIST
+//game should open to screen with the two options for gameplay; 
+    // once player selects which era they would like to play; the questions container should appear
 //learn how to add audio to browser
 //have user choose between multiple answers
 //how to add photos to game
 
 /*-------------- Constants -------------*/
-const questions = 
+const startEightiesQuiz = document.getElementById("play-btn-eighties");
+const startOughtsQuiz = document.getElementById("play-btn-modern") 
 
 /*---------- Variables (state) ---------*/
 let score = 0;
@@ -30,7 +33,17 @@ let lives = 0;
 
 
 /*-------------- Functions -------------*/
+function start(){
 
+}
+
+function next(){
+
+}
+
+function selectAnswer(){
+
+}
 
 /*----------- Event Listeners ----------*/
 document.getElementById("play-btn").addEventListener("click", )

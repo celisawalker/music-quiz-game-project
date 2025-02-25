@@ -1,4 +1,4 @@
-*{
+body{
     background-color: #fcf2d4;
     font-family: "Kiwi Maru", serif;
     font-style: normal;
@@ -10,39 +10,82 @@
     flex-direction: column;
     align-items: center;
 }
-.btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-    font-size: 15px;
-    border: 3px solid rgba(0, 0, 0, 0.1);
-    width: 100px;
-    height: 100px;
-    border-radius: 25%;
-}
-
-.btn:hover{
-    border: 3px solid, rgba(77, 45, 6, 0.5);
-    cursor: pointer;
-}
 
 #game-play-btns{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    margin-bottom: 15px;
+}
+
+#container{
+    width: 500px;
+    max-width: 75%;
+    /* display: flex;
+    justify-content: center;
+    flex-direction: column; */
+    background-color: #4f2e05;
+    padding: 20px;
+    border-radius: 25px;
+    box-shadow: 0 0 5px 2px;
+    margin: auto;
+}
+
+.btn{
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    margin: 10px;
+    font-size: 15px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    width: 100px;
+    height: 100px;
+    border-radius: 25%;
+}
+
+.btn:hover{
+    border: 5px solid, rgba(77, 45, 6, 0.5);
+    cursor: pointer;
+}
+
+#question-container{
+    display: flex;
+    background-color: #4f2e05;
+    flex-direction: column;
+}
+#question{
+    color: white;
+}
+
+.btn-grid{
+    display: flex;
+    justify-content: center;
 }
 
 #answer-btn{
+    background-color: #4f2e05;
+    display: grid;
+    grid-template-columns:repeat(2, auto);
+    margin: auto;
+    gap: 10px;
+}
+
+.next{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: auto;
+    height: 50px;
+    width: 50px;;
 }
-
 #play-again-btn{
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin: auto;
+    margin: 20px auto;
+}
+
+.hide{
+    display: none;
 }
