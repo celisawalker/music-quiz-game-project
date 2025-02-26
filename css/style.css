@@ -32,7 +32,7 @@ body{
     margin: auto;
 }
 
-.btn{
+.btn, .answer-btn{
     /* display: flex;
     justify-content: center;
     align-items: center; */
@@ -44,7 +44,7 @@ body{
     border-radius: 25%;
 }
 
-.btn:hover{
+.btn:hover, .answer-btn:hover{
     border: 5px solid, rgba(77, 45, 6, 0.5);
     cursor: pointer;
 }
@@ -85,7 +85,7 @@ body{
     justify-content: center;
 }
 
-#answer-btn{
+#answer-btn-container{
     background-color: #4f2e05;
     display: grid;
     grid-template-columns:repeat(2, auto);

@@ -27,7 +27,12 @@ const startOughtsQuiz = document.getElementById("play-btn-modern");
 const container = document.getElementById("container");
 const questionEl = document.querySelector("#question");
 const quizProgress = document.getElementById("quiz-progress");
-const answerButtons = document.getElementById("answer-btn");
+
+
+const answerBtnOne = document.querySelector(".option-one")
+const answerBtnTwo = document.querySelector(".option-two")
+const answerBtnThree = document.querySelector(".option-three")
+const answerBtnFour = document.querySelector(".option-four")
 
 const eightiesQuizQuestions = [
     {question: "Which singer was the only solo musician to have a #1 hit in every year of the 1990s?", 
@@ -292,6 +297,20 @@ function handleQuizOneQuestion(index){
         spans[i].classList.add("seen");
     }
     questionEl.innerHTML = `<p>${eightiesQuizQuestions[index].question}</p>`;
+
+    eightiesQuizQuestions[index].answers.forEach((answer) => {
+        answerBtnOne.innerHTML = eightiesQuizQuestions[index].answers[0].option;
+        answerBtnTwo.innerHTML = eightiesQuizQuestions[index].answers[1].option;
+        answerBtnThree.innerHTML = eightiesQuizQuestions[index].answers[2].option;
+        answerBtnFour.innerHTML = eightiesQuizQuestions[index].answers[3].option;
+    })
+    let answerButtons = document.querySelectorAll(".answer-btn");
+    
+    answerButtons.forEach((answerButton) => {
+        answerButton.addEventListener("click", (e) => {
+            console.log(e.target.textContent);
+        })
+    })
 }
 
 function handleQuizTwoQuestion(index){
@@ -303,6 +322,20 @@ function handleQuizTwoQuestion(index){
         spans[i].classList.add("seen");
     }
     questionEl.innerHTML = `<p>${oughtsQuizQuestions[index].question}</p>`;
+
+    oughtsQuizQuestions[index].answers.forEach((answer) => {
+        answerBtnOne.innerHTML = oughtsQuizQuestions[index].answers[0].option;
+        answerBtnTwo.innerHTML = oughtsQuizQuestions[index].answers[1].option;
+        answerBtnThree.innerHTML = oughtsQuizQuestions[index].answers[2].option;
+        answerBtnFour.innerHTML = oughtsQuizQuestions[index].answers[3].option;
+    })
+    let answerButtons = document.querySelectorAll(".answer-btn");
+    
+    answerButtons.forEach((answerButton) => {
+        answerButton.addEventListener("click", (e) => {
+            console.log(e.target.textContent);
+        })
+    })
 }
 // function selectAnswer(){
 
