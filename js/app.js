@@ -27,7 +27,7 @@ const startOughtsQuiz = document.getElementById("play-btn-modern");
 const container = document.getElementById("container");
 const questionEl = document.querySelector("#question");
 const quizProgress = document.getElementById("quiz-progress");
-
+const answerButtons = document.querySelectorAll(".answer-btn");
 
 const answerBtnOne = document.querySelector(".option-one")
 const answerBtnTwo = document.querySelector(".option-two")
@@ -37,231 +37,259 @@ const answerBtnFour = document.querySelector(".option-four")
 const eightiesQuizQuestions = [
     {question: "Which singer was the only solo musician to have a #1 hit in every year of the 1990s?", 
         answers:[
-            {option: "Mariah Carey", correct: true},
-            {option: "Madonna", correct: false},
-            {option: "Alanis Morissette", correct: false},
-            {option: "Celine Dion", correct: false}
+            {option: "Mariah Carey"},
+            {option: "Madonna"},
+            {option: "Alanis Morissette"},
+            {option: "Celine Dion"}
          ],
+         correctAnswer: "Mariah Carey"
     },
     {question: "What is the best-selling album of all time?",
         answers: [
-            {option: "Whitney Houston - The Bodyguard", correct: false},
-            {option: "AC/DC - Back In Black", correct: false},
-            {option: "Michael Jackson - Thriller", correct: true},
-            {option: "Celine Dion - Let's Talk About Love", correct: false}
-        ]
+            {option: "Whitney Houston - The Bodyguard"},
+            {option: "AC/DC - Back In Black"},
+            {option: "Michael Jackson - Thriller"},
+            {option: "Celine Dion - Let's Talk About Love"}
+        ],
+        correctAnswer: "Michael Jackson - Thriller"
     },
     {question: "What Kate Bush song was featured in Season 4 of Stranger Things?",
         answers: [
-            {option: "Running Up That Trail", correct: false}, 
-            {option: "Running Up That Mountain", correct: false}, 
-            {option: "Trying to Climb That Hill", correct: false},
-            {option: "Running Up That Hill", correct: true}
-        ]
+            {option: "Running Up That Trail"}, 
+            {option: "Running Up That Mountain"}, 
+            {option: "Climb Up That Hill"},
+            {option: "Running Up That Hill"}
+        ],
+        correctAnswer: "Running Up That Hill"
     },
     {question: "What Nirvana album is 'Heart Shaped Box' on?", 
         answers: [
-            {option: "Nevermind", correct: false},
-            {option: "In Utero", correct: true},
-            {option: "Bleach", correct: false},
-            {option: "Insecticide", correct: false}
-        ]
+            {option: "Nevermind"},
+            {option: "In Utero"},
+            {option: "Bleach"},
+            {option: "Insecticide"}
+        ],
+        correctAnswer: "In Utero"
     },
     {question: "Which band was Michael Jackson's song 'Human Nature' originally written for?", 
         answers: [
-            {option: "Toto", correct: true},
-            {option: "U2", correct: false},
-            {option: "Pink Floyd", correct: false},
-            {option: "The Beatles", correct: false}
-        ]
+            {option: "Toto"},
+            {option: "U2"},
+            {option: "Pink Floyd"},
+            {option: "The Beatles"}
+        ],
+        correctAnswer: "Toto"
     },
     {question: "What's the name of the Spice Girls' debut album?", 
         answers: [
-            {option: "Sugar", correct: false},
-            {option: "Spice", correct: true},
-            {option: "Everything Nice", correct: false},
-            {option: "One Hour of Girl Power", correct: false},
-        ]
+            {option: "Sugar"},
+            {option: "Spice"},
+            {option: "Everything Nice"},
+            {option: "One Hour of Girl Power"},
+        ],
+        correctAnswer: "Spice"
     },
     {question: "What's the end of this lyric: 'Strumming my pain with his fingers / ________________'?",
         answers:[
-            {option: "Telling my whole life with his words", correct: false},
-            {option: "I heard he sang a good song", correct: false},
-            {option: "Singing my live with his words", correct: true},
-            {option: "Killing me softly", correct: false}
-        ]
+            {option: "Telling my whole life with his words"},
+            {option: "I heard he sang a good song"},
+            {option: "Singing my life with his words"},
+            {option: "Killing me softly"}
+        ],
+        correctAnswer: "Singing my life with his words"
     },
     {question: "'In the Air Tonight' is one of the signature songs of which artist?", 
         answers: [
-            {option: "Bono", correct: false},
-            {option: "Ringo Starr", correct: false},
-            {option: "Metallica", correct: false},
-            {option: "Phil Collins", correct: true}
-        ]
+            {option: "Bono"},
+            {option: "Ringo Starr"},
+            {option: "Metallica"},
+            {option: "Phil Collins"}
+        ],
+        correctAnswer :"Phil Collins"
     },
     {question: "What rock song begins with the line, “Just a small-town girl”?",
         answers: [
-            {option: "The Bangles - Manic Monday", correct: false},
-            {option: "David Bowie - Modern Love", correct: false},
-            {option: "Journey - Any Way You Want It", correct: false},
-            {option: "Journey - Don't Stop Believin'", correct: true}
-        ]
+            {option: "The Bangles - Manic Monday"},
+            {option: "David Bowie - Modern Love"},
+            {option: "Journey - Any Way You Want It"},
+            {option: "Journey - Don't Stop Believin'"}
+        ],
+        correctAnswer: "Journey - Don't Stop Believin'"
     },
     {question: "Which artist released the 1997 hit “You Make Me Wanna…”", 
         answers:[
-            {option: "Maxwell", correct: false},
-            {option: "Usher", correct: true},
-            {option: "Tevin Campbell", correct: false},
-            {option: "D'Angelo", correct: false}
-        ]
+            {option: "Maxwell"},
+            {option: "Usher"},
+            {option: "Tevin Campbell"},
+            {option: "D'Angelo"}
+        ],
+        correctAnswer: "Usher"
     },
     {question: "What artist refused to attend the Grammys after being snubbed for Best New Artist in 1989?",
         answers: [
-            {option: "Vanilla Ice", correct: false},
-            {option: "Indigo Girls", correct: false},
-            {option: "Neneh Cherry", correct: false},
-            {option: "Milli Vanilli", correct: true}
-        ]
+            {option: "Vanilla Ice"},
+            {option: "Indigo Girls"},
+            {option: "Neneh Cherry"},
+            {option: "Milli Vanilli"}
+        ],
+        correctAnswer: "Milli Vanilli"
     },
     {question: "What artist won the first-ever Grammy for Best R&B Album?",
         answers: [
-            {option: "Babyface", correct: false},
-            {option: "Toni Braxton", correct: false},
-            {option: "Boyz II Men", correct: true},
+            {option: "Babyface"},
+            {option: "Toni Braxton"},
+            {option: "Boyz II Men"},
             {option: "TLC"}
-        ]
+        ],
+        correctAnswer: "TLC"
     },
     {question: "What song from The Lion King won the Academy Award for Best Original Song in 1994?",
         answers: [
-            {option: "Can You Feel The Love Tonight", correct: true},
-            {option: "Hakuna Matata", correct: false},
-            {option: "The Circle of Life", correct: false},
-            {option: "Be Prepared", correct: false}
-        ]
+            {option: "Can You Feel The Love Tonight"},
+            {option: "Hakuna Matata"},
+            {option: "The Circle of Life"},
+            {option: "Be Prepared"}
+        ],
+        correctAnswer: "The Circle of Life"
     },
     {question: "Finish the lyric: “525,600 minutes…”",
         answer:[
-            {option: "In daylights, in sunsets, in midnights, in cups of coffee", correct: false},
-            {option: "How about love?", correct: false},
-            {option: "525,000 moments so dear", correct: true},
-            {option: "Measure in love", correct: false}
-        ]
+            {option: "In daylights, in sunsets, in midnights, in cups of coffee"},
+            {option: "How about love?"},
+            {option: "525,000 moments so dear"},
+            {option: "Measure in love"}
+        ],
+        correctAnswer: "525,000 moments so dear"
     }
 ]
 
 const oughtsQuizQuestions = [
     {question: "What is the most decorated rap song in Grammy Awards history?", 
      answers:[
-        {option: "Drake", correct: false},
-        {option: "Kendrick Lamar", correct: true},
-        {option: "Lil Wayne", correct: false},
-        {option: "Eminem", correct: false}
-        ]
+        {option: "Drake"},
+        {option: "Kendrick Lamar"},
+        {option: "Lil Wayne"},
+        {option: "Eminem"}
+        ],
+        correctAnswer: "Kendrick Lamar"
     },
     {question: "In 2015, members of the Beyhive were disappointed at Beyonce’s loss to which Grammy’s Album of the Year winner?",
         answers: [
-            {option: "Adele", correct: false},
-            {option: "Macklemore", correct: false},
-            {option: "Beck", correct: true},
-            {option: "Taylor Swift", correct: false}
-        ]
+            {option: "Adele"},
+            {option: "Macklemore"},
+            {option: "Beck"},
+            {option: "Taylor Swift"}
+        ],
+        correctAnswer: "Beck"
     },
     {question: "Who are the three members of Boygenius?", 
         answers: [
-            {option: "Billie Eilish, Olivia Rodrigo, Sabrina Carpenter", correct: false},
-            {option: "Lizzy McAlpine, Gracie Abrams, Maisie Peters", correct: false},
-            {option: "Danielle Haim, Este Haim, Alana Haim", correct: false},
-            {option: "Phoebe Bridgers, Lucy Dacus, Julien Baker", correct: true}
-        ]
+            {option: "Billie Eilish, Olivia Rodrigo, Sabrina Carpenter"},
+            {option: "Lizzy McAlpine, Gracie Abrams, Maisie Peters"},
+            {option: "Danielle Haim, Este Haim, Alana Haim"},
+            {option: "Phoebe Bridgers, Lucy Dacus, Julien Baker"}
+        ],
+        correctAnswer: "Phoebe Bridgers, Lucy Dacus, Julien Baker"
     },
     {question: "Which album won Album of the Year at the Grammy Awards in 2023?", 
         answers: [
-            {option: "Harry's House - Harry Styles", correct: true},
-            {option: "Midnights" - "Taylor Swift", correct: false},
-            {option: "We Are - Jon Batiste", correct: false},
-            {option: "30 - Adele", correct: false}
-        ]
+            {option: "Harry's House - Harry Styles"},
+            {option: "Midnights" - "Taylor Swift",},
+            {option: "We Are - Jon Batiste"},
+            {option: "30 - Adele"}
+        ],
+        correctAnswer: "Harry Styles"
     },
     {question: "What does Ed Sheeran name his albums after?", 
         answers:[
-            {option: "Ages", correct: false},
-            {option: "Math Symbols", correct: true},
-            {option: "Highway Names", correct: false},
-            {option: "Colors", correct: false}
-        ]
+            {option: "Ages"},
+            {option: "Math Symbols"},
+            {option: "Highway Names"},
+            {option: "Colors"}
+        ],
+        correctAnswer: "Math Symbols"
     },
     {question: "Which song went 14 times platinum in 2021?", 
         answers: [
-            {option: "Save Your Tears - The Weeknd", correct: false},
-            {option: "Drivers License - Olivia Rodrigo", correct: false},
-            {option: "Bad Habits - Ed Sheeran", correct: false},
-            {option: "Old Town Road - Lil Nas X", correct: true}
-        ]
+            {option: "Save Your Tears - The Weeknd"},
+            {option: "Drivers License - Olivia Rodrigo"},
+            {option: "Bad Habits - Ed Sheeran"},
+            {option: "Old Town Road - Lil Nas X"}
+        ],
+        correctAnswer: "Old Town Road - Lil Nas X"
     },
     {question: "Who won Best New Artist at the 2025 Grammy Awards?", 
         answers: [
-            {option: "Doechii", correct: false},
-            {option: "Raye", correct: false},
-            {option: "Chappell Roan", correct: true},
-            {option: "Benson Boone", correct: false}
-        ]
+            {option: "Doechii"},
+            {option: "Raye"},
+            {option: "Chappell Roan"},
+            {option: "Benson Boone"}
+        ],
+        correctAnswer: "Chappell Roan"
     },
     {question: "What is the name of the Post Malone song that opens the 2018 movie “Spider-Man: Into the Spider-Verse?”", 
         answers: [
-            {option: "Sunflower", correct: true},
-            {option: "Way Up", correct: false},
-            {option: "Start a Riot", correct: false},
-            {option: "What's Up Danger", correct: false}
-        ]
+            {option: "Sunflower"},
+            {option: "Way Up"},
+            {option: "Start a Riot"},
+            {option: "What's Up Danger"}
+        ],
+        correctAnswer: "Sunflower"
     },
     {question: "Which boy band hailed from the UK television talent show The X Factor in 2010 and consisted of members Harry Styles, Liam Payne, Niall Horan, Louis Tomlinson and Zayn Malik?",
         answers: [
-            {option: "Jonas Brothers", correct: false},
-            {option: "One Direction", correct: true},
-            {option: "The Wanted", correct: false},
-            {option: "Take That", correct: false}
-        ]
+            {option: "Jonas Brothers"},
+            {option: "One Direction"},
+            {option: "The Wanted"},
+            {option: "Take That"}
+        ],
+        correctAnswer: "One Direction"
     },
     {question: "Billie Eilish co-writes many of her songs with her singer-songwriter brother. What’s his name?",
         answers: [
-            {option: "Phillip", correct: false},
-            {option: "Fionn", correct: false},
-            {option: "Frederick", correct: false},
-            {option: "Finneas", correct: true}
-        ]
+            {option: "Phillip"},
+            {option: "Fionn"},
+            {option: "Frederick"},
+            {option: "Finneas"}
+        ],
+        correctAnswer: "Finneas"
     },
     {question: "Patrick Stump is lead singer of what band?", 
         answers:[
-            {option: "Panic at the Disco", correct: false},
-            {option: "Fall Out Boy", correct: true},
-            {option: "All Time Low", correct: false},
-            {option: "My Chemical Romance", correct: false}
-        ]
+            {option: "Panic at the Disco"},
+            {option: "Fall Out Boy"},
+            {option: "All Time Low"},
+            {option: "My Chemical Romance"}
+        ],
+        correctAnswer: "Fall Out Boy"
     },
     {question: "What pop song features the lyrics “I stay out too late, got nothing in my brain”?", 
         answers: [
-            {option: "Shake It Off", correct: true},
-            {option: "Cruel Summer", correct: false},
-            {option: "Espresso", correct: false},
-            {option: "You Belong With Me", correct: false}
-        ]
+            {option: "Shake It Off"},
+            {option: "Cruel Summer"},
+            {option: "Espresso"},
+            {option: "You Belong With Me"}
+        ],
+        correctAnswer: "Shake It Off"
     },
     {question: "What pop star named her fourth studio album “Sweetener”?", 
         answers: [
-            {option: "Olivia Rodrigo", correct: false},
-            {option: "Sabrina Carpenter", correct: false},
-            {option: "Ariana Grande", correct: true},
-            {option: "Beyonce", correct: false}
-        ]
+            {option: "Olivia Rodrigo"},
+            {option: "Sabrina Carpenter"},
+            {option: "Ariana Grande"},
+            {option: "Beyonce"}
+        ],
+        correctAnswer: "Ariana Grande"
     },
     {
      question: "What's the end of this lyric: I'm in the business of misery _______",
      answers: [
-        { option: "let's rewind it", correct: false },
-        { option: "let's take it from the top", correct: true },
-        { option: "let's go back a bit", correct: false },
-        { option: "let's take it there", correct: false }
-        ]
+        { option: "let's rewind it"},
+        { option: "let's take it from the top"},
+        { option: "let's go back a bit"},
+        { option: "let's take it there"}
+        ],
+        correctAnswer: "let's take it from the top"
     }
 ]
 /*---------- Variables (state) ---------*/
@@ -298,18 +326,32 @@ function handleQuizOneQuestion(index){
     }
     questionEl.innerHTML = `<p>${eightiesQuizQuestions[index].question}</p>`;
 
+    answerBtnOne.innerHTML = "";
+    answerBtnTwo.innerHTML = "";
+    answerBtnThree.innerHTML = "";
+    answerBtnFour.innerHTML = "";
+
     eightiesQuizQuestions[index].answers.forEach((answer) => {
         answerBtnOne.innerHTML = eightiesQuizQuestions[index].answers[0].option;
         answerBtnTwo.innerHTML = eightiesQuizQuestions[index].answers[1].option;
         answerBtnThree.innerHTML = eightiesQuizQuestions[index].answers[2].option;
         answerBtnFour.innerHTML = eightiesQuizQuestions[index].answers[3].option;
     })
-    let answerButtons = document.querySelectorAll(".answer-btn");
     
     answerButtons.forEach((answerButton) => {
         answerButton.addEventListener("click", (e) => {
-            console.log(e.target.textContent);
-        })
+            if(e.target.textContent === eightiesQuizQuestions[index].correctAnswer){
+                answerButton.classList.add("correct");
+            }else{
+                answerButton.classList.add("incorrect");
+            }
+            if(currentQuestionIdx === eightiesQuizQuestions.length - 1){
+                currentQuestionIdx = 0;
+            }else{
+                currentQuestionIdx++;
+            }
+            handleQuizOneQuestion(index);
+        });
     })
 }
 
@@ -329,14 +371,21 @@ function handleQuizTwoQuestion(index){
         answerBtnThree.innerHTML = oughtsQuizQuestions[index].answers[2].option;
         answerBtnFour.innerHTML = oughtsQuizQuestions[index].answers[3].option;
     })
-    let answerButtons = document.querySelectorAll(".answer-btn");
     
     answerButtons.forEach((answerButton) => {
         answerButton.addEventListener("click", (e) => {
-            console.log(e.target.textContent);
-        })
+            if(e.target.textContent === oughtsQuizQuestions[index].correctAnswer){
+                answerButton.classList.add("correct");
+                console.log("correct!");
+            }else{
+                answerButton.classList.add("incorrect");
+                console.log("incorrect :(")
+            }
+        });
     })
 }
+
+
 // function selectAnswer(){
 
 // }

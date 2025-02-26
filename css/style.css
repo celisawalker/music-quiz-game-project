@@ -1,3 +1,8 @@
+:root {
+    --correct: #93e077;
+    --incorrect: #f75a52;
+  }
+
 body{
     background-color: #fcf2d4;
     font-family: "Kiwi Maru", serif;
@@ -47,6 +52,14 @@ body{
 .btn:hover, .answer-btn:hover{
     border: 5px solid, rgba(77, 45, 6, 0.5);
     cursor: pointer;
+}
+
+.answer-btn.correct{
+    background-color: var(--correct);
+}
+
+.answer-btn.incorrect{
+    background-color: var(--incorrect);
 }
 
 #question-container{
