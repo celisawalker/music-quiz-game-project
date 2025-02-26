@@ -25,12 +25,12 @@
 const startEightiesQuiz = document.getElementById("play-btn-eighties");
 const startOughtsQuiz = document.getElementById("play-btn-modern"); 
 const container = document.getElementById("container");
-const questionEl = document.getElementById("question");
+const questionEl = document.querySelector("#question");
 const quizProgress = document.getElementById("quiz-progress");
 const answerButtons = document.getElementById("answer-btn");
 
 const eightiesQuizQuestions = [
-    {Question: "Which singer was the only solo musician to have a #1 hit in every year of the 1990s?", 
+    {question: "Which singer was the only solo musician to have a #1 hit in every year of the 1990s?", 
         answers:[
             {option: "Mariah Carey", correct: true},
             {option: "Madonna", correct: false},
@@ -38,7 +38,7 @@ const eightiesQuizQuestions = [
             {option: "Celine Dion", correct: false}
          ],
     },
-    {Question: "What is the best-selling album of all time?",
+    {question: "What is the best-selling album of all time?",
         answers: [
             {option: "Whitney Houston - The Bodyguard", correct: false},
             {option: "AC/DC - Back In Black", correct: false},
@@ -46,7 +46,7 @@ const eightiesQuizQuestions = [
             {option: "Celine Dion - Let's Talk About Love", correct: false}
         ]
     },
-    {Question: "What Kate Bush song was featured in Season 4 of Stranger Things?",
+    {question: "What Kate Bush song was featured in Season 4 of Stranger Things?",
         answers: [
             {option: "Running Up That Trail", correct: false}, 
             {option: "Running Up That Mountain", correct: false}, 
@@ -54,7 +54,7 @@ const eightiesQuizQuestions = [
             {option: "Running Up That Hill", correct: true}
         ]
     },
-    {Question: "What Nirvana album is 'Heart Shaped Box' on?", 
+    {question: "What Nirvana album is 'Heart Shaped Box' on?", 
         answers: [
             {option: "Nevermind", correct: false},
             {option: "In Utero", correct: true},
@@ -62,7 +62,7 @@ const eightiesQuizQuestions = [
             {option: "Insecticide", correct: false}
         ]
     },
-    {Question: "Which band was Michael Jackson's song 'Human Nature' originally written for?", 
+    {question: "Which band was Michael Jackson's song 'Human Nature' originally written for?", 
         answers: [
             {option: "Toto", correct: true},
             {option: "U2", correct: false},
@@ -70,7 +70,7 @@ const eightiesQuizQuestions = [
             {option: "The Beatles", correct: false}
         ]
     },
-    {Question: "What's the name of the Spice Girls' debut album?", 
+    {question: "What's the name of the Spice Girls' debut album?", 
         answers: [
             {option: "Sugar", correct: false},
             {option: "Spice", correct: true},
@@ -78,7 +78,7 @@ const eightiesQuizQuestions = [
             {option: "One Hour of Girl Power", correct: false},
         ]
     },
-    {Question: "What's the end of this lyric: 'Strumming my pain with his fingers / ________________'?",
+    {question: "What's the end of this lyric: 'Strumming my pain with his fingers / ________________'?",
         answers:[
             {option: "Telling my whole life with his words", correct: false},
             {option: "I heard he sang a good song", correct: false},
@@ -86,7 +86,7 @@ const eightiesQuizQuestions = [
             {option: "Killing me softly", correct: false}
         ]
     },
-    {Question: "'In the Air Tonight' is one of the signature songs of which artist?", 
+    {question: "'In the Air Tonight' is one of the signature songs of which artist?", 
         answers: [
             {option: "Bono", correct: false},
             {option: "Ringo Starr", correct: false},
@@ -94,7 +94,7 @@ const eightiesQuizQuestions = [
             {option: "Phil Collins", correct: true}
         ]
     },
-    {Question: "What rock song begins with the line, “Just a small-town girl”?",
+    {question: "What rock song begins with the line, “Just a small-town girl”?",
         answers: [
             {option: "The Bangles - Manic Monday", correct: false},
             {option: "David Bowie - Modern Love", correct: false},
@@ -102,7 +102,7 @@ const eightiesQuizQuestions = [
             {option: "Journey - Don't Stop Believin'", correct: true}
         ]
     },
-    {Question: "Which artist released the 1997 hit “You Make Me Wanna…”", 
+    {question: "Which artist released the 1997 hit “You Make Me Wanna…”", 
         answers:[
             {option: "Maxwell", correct: false},
             {option: "Usher", correct: true},
@@ -110,7 +110,7 @@ const eightiesQuizQuestions = [
             {option: "D'Angelo", correct: false}
         ]
     },
-    {Question: "What artist refused to attend the Grammys after being snubbed for Best New Artist in 1989?",
+    {question: "What artist refused to attend the Grammys after being snubbed for Best New Artist in 1989?",
         answers: [
             {option: "Vanilla Ice", correct: false},
             {option: "Indigo Girls", correct: false},
@@ -118,7 +118,7 @@ const eightiesQuizQuestions = [
             {option: "Milli Vanilli", correct: true}
         ]
     },
-    {Question: "What artist won the first-ever Grammy for Best R&B Album?",
+    {question: "What artist won the first-ever Grammy for Best R&B Album?",
         answers: [
             {option: "Babyface", correct: false},
             {option: "Toni Braxton", correct: false},
@@ -126,7 +126,7 @@ const eightiesQuizQuestions = [
             {option: "TLC"}
         ]
     },
-    {Question: "What song from The Lion King won the Academy Award for Best Original Song in 1994?",
+    {question: "What song from The Lion King won the Academy Award for Best Original Song in 1994?",
         answers: [
             {option: "Can You Feel The Love Tonight", correct: true},
             {option: "Hakuna Matata", correct: false},
@@ -134,7 +134,7 @@ const eightiesQuizQuestions = [
             {option: "Be Prepared", correct: false}
         ]
     },
-    {Question: "Finish the lyric: “525,600 minutes…”",
+    {question: "Finish the lyric: “525,600 minutes…”",
         answer:[
             {option: "In daylights, in sunsets, in midnights, in cups of coffee", correct: false},
             {option: "How about love?", correct: false},
@@ -145,15 +145,15 @@ const eightiesQuizQuestions = [
 ]
 
 const oughtsQuizQuestions = [
-    {Question: "What is the most decorated rap song in Grammy Awards history?", 
-        answers:[
-            {option: "Drake", correct: false},
-            {option: "Kendrick Lamar", correct: true},
-            {option: "Lil Wayne", correct: false},
-            {option: "Eminem", correct: false}
+    {question: "What is the most decorated rap song in Grammy Awards history?", 
+     answers:[
+        {option: "Drake", correct: false},
+        {option: "Kendrick Lamar", correct: true},
+        {option: "Lil Wayne", correct: false},
+        {option: "Eminem", correct: false}
         ]
     },
-    {Question: "In 2015, members of the Beyhive were disappointed at Beyonce’s loss to which Grammy’s Album of the Year winner?",
+    {question: "In 2015, members of the Beyhive were disappointed at Beyonce’s loss to which Grammy’s Album of the Year winner?",
         answers: [
             {option: "Adele", correct: false},
             {option: "Macklemore", correct: false},
@@ -161,7 +161,7 @@ const oughtsQuizQuestions = [
             {option: "Taylor Swift", correct: false}
         ]
     },
-    {Question: "Who are the three members of Boygenius?", 
+    {question: "Who are the three members of Boygenius?", 
         answers: [
             {option: "Billie Eilish, Olivia Rodrigo, Sabrina Carpenter", correct: false},
             {option: "Lizzy McAlpine, Gracie Abrams, Maisie Peters", correct: false},
@@ -169,7 +169,7 @@ const oughtsQuizQuestions = [
             {option: "Phoebe Bridgers, Lucy Dacus, Julien Baker", correct: true}
         ]
     },
-    {Question: "Which album won Album of the Year at the Grammy Awards in 2023?", 
+    {question: "Which album won Album of the Year at the Grammy Awards in 2023?", 
         answers: [
             {option: "Harry's House - Harry Styles", correct: true},
             {option: "Midnights" - "Taylor Swift", correct: false},
@@ -177,7 +177,7 @@ const oughtsQuizQuestions = [
             {option: "30 - Adele", correct: false}
         ]
     },
-    {Question: "What does Ed Sheeran name his albums after?", 
+    {question: "What does Ed Sheeran name his albums after?", 
         answers:[
             {option: "Ages", correct: false},
             {option: "Math Symbols", correct: true},
@@ -185,7 +185,7 @@ const oughtsQuizQuestions = [
             {option: "Colors", correct: false}
         ]
     },
-    {Question: "Which song went 14 times platinum in 2021?", 
+    {question: "Which song went 14 times platinum in 2021?", 
         answers: [
             {option: "Save Your Tears - The Weeknd", correct: false},
             {option: "Drivers License - Olivia Rodrigo", correct: false},
@@ -193,7 +193,7 @@ const oughtsQuizQuestions = [
             {option: "Old Town Road - Lil Nas X", correct: true}
         ]
     },
-    {Question: "Who won Best New Artist at the 2025 Grammy Awards?", 
+    {question: "Who won Best New Artist at the 2025 Grammy Awards?", 
         answers: [
             {option: "Doechii", correct: false},
             {option: "Raye", correct: false},
@@ -201,7 +201,7 @@ const oughtsQuizQuestions = [
             {option: "Benson Boone", correct: false}
         ]
     },
-    {Question: "What is the name of the Post Malone song that opens the 2018 movie “Spider-Man: Into the Spider-Verse?”", 
+    {question: "What is the name of the Post Malone song that opens the 2018 movie “Spider-Man: Into the Spider-Verse?”", 
         answers: [
             {option: "Sunflower", correct: true},
             {option: "Way Up", correct: false},
@@ -209,7 +209,7 @@ const oughtsQuizQuestions = [
             {option: "What's Up Danger", correct: false}
         ]
     },
-    {Question: "Which boy band hailed from the UK television talent show The X Factor in 2010 and consisted of members Harry Styles, Liam Payne, Niall Horan, Louis Tomlinson and Zayn Malik?",
+    {question: "Which boy band hailed from the UK television talent show The X Factor in 2010 and consisted of members Harry Styles, Liam Payne, Niall Horan, Louis Tomlinson and Zayn Malik?",
         answers: [
             {option: "Jonas Brothers", correct: false},
             {option: "One Direction", correct: true},
@@ -217,7 +217,7 @@ const oughtsQuizQuestions = [
             {option: "Take That", correct: false}
         ]
     },
-    {Question: "Billie Eilish co-writes many of her songs with her singer-songwriter brother. What’s his name?",
+    {question: "Billie Eilish co-writes many of her songs with her singer-songwriter brother. What’s his name?",
         answers: [
             {option: "Phillip", correct: false},
             {option: "Fionn", correct: false},
@@ -225,7 +225,7 @@ const oughtsQuizQuestions = [
             {option: "Finneas", correct: true}
         ]
     },
-    {Question: "Patrick Stump is lead singer of what band?", 
+    {question: "Patrick Stump is lead singer of what band?", 
         answers:[
             {option: "Panic at the Disco", correct: false},
             {option: "Fall Out Boy", correct: true},
@@ -233,7 +233,7 @@ const oughtsQuizQuestions = [
             {option: "My Chemical Romance", correct: false}
         ]
     },
-    {Question: "What pop song features the lyrics “I stay out too late, got nothing in my brain”?", 
+    {question: "What pop song features the lyrics “I stay out too late, got nothing in my brain”?", 
         answers: [
             {option: "Shake It Off", correct: true},
             {option: "Cruel Summer", correct: false},
@@ -241,7 +241,7 @@ const oughtsQuizQuestions = [
             {option: "You Belong With Me", correct: false}
         ]
     },
-    {Question: "What pop star named her fourth studio album “Sweetener”?", 
+    {question: "What pop star named her fourth studio album “Sweetener”?", 
         answers: [
             {option: "Olivia Rodrigo", correct: false},
             {option: "Sabrina Carpenter", correct: false},
@@ -249,12 +249,13 @@ const oughtsQuizQuestions = [
             {option: "Beyonce", correct: false}
         ]
     },
-    {Question: "What's the end of this lyric: I'm in the business of misery _______", 
-        answers: [
-            {option: "let's rewind it", correct: false},
-            {option: "let's take it from the top", correct: true},
-            {option: "let's go back a bit", correct: false},
-            {option: "let's take it there", correct: false}
+    {
+     question: "What's the end of this lyric: I'm in the business of misery _______",
+     answers: [
+        { option: "let's rewind it", correct: false },
+        { option: "let's take it from the top", correct: true },
+        { option: "let's go back a bit", correct: false },
+        { option: "let's take it there", correct: false }
         ]
     }
 ]
@@ -271,54 +272,38 @@ let currentQuestionIdx = 0;
 function startQuizOne(){
     startEightiesQuiz.classList.add("hide");
     startOughtsQuiz.classList.add("hide");
-    // shuffledEightiesQuestions = eightiesQuizQuestions.sort(() => Math.random() - .5);
-    currentQuestionIdx = 0;
-    container.classList.remove('hide')
-    handleQuizOneQuestion()
+    container.classList.remove('hide');
+    handleQuizOneQuestion(currentQuestionIdx);
 }
 
 function startQuizTwo(){
     startEightiesQuiz.classList.add("hide");
     startOughtsQuiz.classList.add("hide");
-    // shuffledOughtsQuestions = oughtsQuizQuestions.sort(() => Math.random() - .5);
-    currentQuestionIdx = 0;
-    container.classList.remove('hide')
-    //nextQuizTwoQuestion()
+    container.classList.remove('hide');
+    handleQuizTwoQuestion(currentQuestionIdx);
 }
 
 function handleQuizOneQuestion(index){
-    eightiesQuizQuestions.forEach((eightiesQuizQuestion) => {
+    eightiesQuizQuestions.forEach((question) => {
         quizProgress.innerHTML += "<span></span>";
     });
     let spans = document.querySelectorAll("span");
     for(let i = 0; i <= index; i++){
         spans[i].classList.add("seen");
     }
-
-    questionEl.innerHTML = 
-    `${eightiesQuizQuestions[index].eightiesQuizQuestion}`;
+    questionEl.innerHTML = `<p>${eightiesQuizQuestions[index].question}</p>`;
 }
 
-// function nextQuizOneQuestion(){
-//     showQuizOneQuestion(shuffledEightiesQuestions[currentQuestionIdx]);
-// }
-
-// function nextQuizTwoQuestion(){
-//     showQuizTwoQuestion(shuffledOughtsQuestions[currentQuestionIdx]);
-// }
-
-// function showQuizOneQuestion(){
-
-// }
-
-// function showQuizTwoQuestion(question){
-//     question.textContent = question.oughtsQuizQuestions;
-
-// }
-// // function displayQuestion(question){
-// //     question.innerText = 
-// // }
-
+function handleQuizTwoQuestion(index){
+    oughtsQuizQuestions.forEach((question) => {
+        quizProgress.innerHTML += "<span></span>";
+    });
+    let spans = document.querySelectorAll("span");
+    for(let i = 0; i <= index; i++){
+        spans[i].classList.add("seen");
+    }
+    questionEl.innerHTML = `<p>${oughtsQuizQuestions[index].question}</p>`;
+}
 // function selectAnswer(){
 
 // }
