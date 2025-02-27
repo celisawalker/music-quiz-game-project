@@ -394,7 +394,7 @@ function loseGameOne(){
         winnerContainer.classList.remove("hide");
         winnerContainer.textContent = "Sorry. You lose :(";
         document.body.appendChild(playAgainBtn);
-        playAgainBtn.addEventListener("click", startEightiesQuiz);
+        playAgainBtn.addEventListener("click", playAgain);
     }
     return;
 }
@@ -407,8 +407,15 @@ function winGameOne(){
         winnerContainer.classList.remove("hide");
         winnerContainer.textContent = "You win!!!";
         document.body.appendChild(playAgainBtn);
-        playAgainBtn.addEventListener("click", startEightiesQuiz);
+        playAgainBtn.addEventListener("click", playAgain);
     }
+}
+
+function playAgain(){
+    startEightiesQuiz.classList.remove("hide");
+    startOughtsQuiz.classList.remove("hide");
+    winnerContainer.classList.add("hide");
+    playAgainBtn.classList.add("hide");
 }
 
 function handleQuizTwoQuestion(index){
