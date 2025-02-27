@@ -26,9 +26,14 @@ const startEightiesQuiz = document.getElementById("play-btn-eighties");
 const startOughtsQuiz = document.getElementById("play-btn-modern"); 
 const container = document.getElementById("container");
 const questionEl = document.querySelector("#question");
+const winnerContainer = document.querySelector(".winner-message-container");
 const quizProgress = document.getElementById("quiz-progress");
+
 const answerButtons = document.querySelectorAll(".answer-btn");
-const playAgainBtn = document.getElementById("play-again-btn");
+const playAgainBtn = document.createElement("button");
+playAgainBtn.setAttribute("class", "btn play-again-btn");
+playAgainBtn.innerHTML = "Play again?";
+
 
 const answerBtnOne = document.querySelector(".option-one")
 const answerBtnTwo = document.querySelector(".option-two")
@@ -329,6 +334,7 @@ function startQuizTwo(){
 }
 
 function handleQuizOneQuestion(index){
+    if(winner) return;
     //change text content for question container to the elem at the questions array elements quest index
     questionEl.innerHTML = `<p>${eightiesQuizQuestions[index].question}</p>`;
 
@@ -365,15 +371,14 @@ function checkQuizOneAnswer() {
                 if (currentQuestionIdx + 1 >= eightiesQuizQuestions.length) {
                     currentQuestionIdx = 0;
                     winner = true;
-                    winningSound.play();
-                    winningSound.volume = .25;
+                    winGameOne();
                 } else {
                     currentQuestionIdx++; 
                 }
                 
 
                 handleQuizOneQuestion(currentQuestionIdx);
-                loseGame();
+                loseGameOne();
             });
 
             answerButton.hasListener = true; 
@@ -381,24 +386,30 @@ function checkQuizOneAnswer() {
     });
 }
 
-function loseGame(){
+function loseGameOne(){
     if(!winner && lives < 1){
         losingSound.play();
         losingSound.volume = .25;
-        answerButtons.classList.remove("hide");
-        playAgainBtn.classList.remove("hide");
+        container.classList.add("hide");
+        winnerContainer.classList.remove("hide");
+        winnerContainer.textContent = "Sorry. You lose :(";
+        document.body.appendChild(playAgainBtn);
+        playAgainBtn.addEventListener("click", startEightiesQuiz);
     }
     return;
 }
-// function nextQuestion(){
-//     if(currentQuestionIdx === eightiesQuizQuestions.length - 1){
-//         currentQuestionIdx = 0;
-//     }else{
-//         currentQuestionIdx++
-//         answerBtnOne.textContent = 
-//     }
-//     handleQuizOneQuestion(currentQuestionIdx);
-// }
+
+function winGameOne(){
+    if (winner = true){
+        winningSound.play();
+        winningSound.volume = .25;
+        container.classList.add("hide");
+        winnerContainer.classList.remove("hide");
+        winnerContainer.textContent = "You win!!!";
+        document.body.appendChild(playAgainBtn);
+        playAgainBtn.addEventListener("click", startEightiesQuiz);
+    }
+}
 
 function handleQuizTwoQuestion(index){
     questionEl.innerHTML = `<p>${oughtsQuizQuestions[index].question}</p>`;
