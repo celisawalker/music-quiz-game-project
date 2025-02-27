@@ -46,7 +46,7 @@ const eightiesQuizQuestions = [
          correctAnswer: "Mariah Carey"
     },
     {question: "What is the best-selling album of all time?",
-        answers: [
+        answers:[
             {option: "Whitney Houston - The Bodyguard"},
             {option: "AC/DC - Back In Black"},
             {option: "Michael Jackson - Thriller"},
@@ -55,7 +55,7 @@ const eightiesQuizQuestions = [
         correctAnswer: "Michael Jackson - Thriller"
     },
     {question: "What Kate Bush song was featured in Season 4 of Stranger Things?",
-        answers: [
+        answers:[
             {option: "Running Up That Trail"}, 
             {option: "Running Up That Mountain"}, 
             {option: "Climb Up That Hill"},
@@ -63,8 +63,8 @@ const eightiesQuizQuestions = [
         ],
         correctAnswer: "Running Up That Hill"
     },
-    {question: "What Nirvana album is 'Heart Shaped Box' on?", 
-        answers: [
+    {question: "What Nirvana album is 'Heart Shaped Box' on?",
+        answers:[
             {option: "Nevermind"},
             {option: "In Utero"},
             {option: "Bleach"},
@@ -73,7 +73,7 @@ const eightiesQuizQuestions = [
         correctAnswer: "In Utero"
     },
     {question: "Which band was Michael Jackson's song 'Human Nature' originally written for?", 
-        answers: [
+        answers:[
             {option: "Toto"},
             {option: "U2"},
             {option: "Pink Floyd"},
@@ -82,7 +82,7 @@ const eightiesQuizQuestions = [
         correctAnswer: "Toto"
     },
     {question: "What's the name of the Spice Girls' debut album?", 
-        answers: [
+        answers:[
             {option: "Sugar"},
             {option: "Spice"},
             {option: "Everything Nice"},
@@ -100,7 +100,7 @@ const eightiesQuizQuestions = [
         correctAnswer: "Singing my life with his words"
     },
     {question: "'In the Air Tonight' is one of the signature songs of which artist?", 
-        answers: [
+        answers:[
             {option: "Bono"},
             {option: "Ringo Starr"},
             {option: "Metallica"},
@@ -109,7 +109,7 @@ const eightiesQuizQuestions = [
         correctAnswer :"Phil Collins"
     },
     {question: "What rock song begins with the line, “Just a small-town girl”?",
-        answers: [
+        answers:[
             {option: "The Bangles - Manic Monday"},
             {option: "David Bowie - Modern Love"},
             {option: "Journey - Any Way You Want It"},
@@ -117,7 +117,7 @@ const eightiesQuizQuestions = [
         ],
         correctAnswer: "Journey - Don't Stop Believin'"
     },
-    {question: "Which artist released the 1997 hit “You Make Me Wanna…”", 
+    {question: "Which artist released the 1997 hit “You Make Me Wanna…”",
         answers:[
             {option: "Maxwell"},
             {option: "Usher"},
@@ -127,7 +127,7 @@ const eightiesQuizQuestions = [
         correctAnswer: "Usher"
     },
     {question: "What artist refused to attend the Grammys after being snubbed for Best New Artist in 1989?",
-        answers: [
+        answers:[
             {option: "Vanilla Ice"},
             {option: "Indigo Girls"},
             {option: "Neneh Cherry"},
@@ -136,7 +136,7 @@ const eightiesQuizQuestions = [
         correctAnswer: "Milli Vanilli"
     },
     {question: "What artist won the first-ever Grammy for Best R&B Album?",
-        answers: [
+        answers:[
             {option: "Babyface"},
             {option: "Toni Braxton"},
             {option: "Boyz II Men"},
@@ -145,16 +145,16 @@ const eightiesQuizQuestions = [
         correctAnswer: "TLC"
     },
     {question: "What song from The Lion King won the Academy Award for Best Original Song in 1994?",
-        answers: [
+        answers:[
             {option: "Can You Feel The Love Tonight"},
             {option: "Hakuna Matata"},
             {option: "The Circle of Life"},
             {option: "Be Prepared"}
         ],
-        correctAnswer: "The Circle of Life"
+        correctAnswer: "Can You Feel The Love Tonight"
     },
     {question: "Finish the lyric: “525,600 minutes…”",
-        answer:[
+        answers:[
             {option: "In daylights, in sunsets, in midnights, in cups of coffee"},
             {option: "How about love?"},
             {option: "525,000 moments so dear"},
@@ -304,6 +304,7 @@ winner = false;
 correctSound = new Audio("assets/correct-6033.mp3");
 incorrectSound = new Audio("assets/wronganswer-37702.mp3");
 losingSound = new Audio("assets/cartoon-trombone-sound-effect-241387.mp3");
+winningSound = new Audio("assets/winning-218995.mp3");
 
 /*----- Cached Element References  -----*/
 
@@ -346,47 +347,46 @@ function handleQuizOneQuestion(index){
     checkQuizOneAnswer();
 }
 
-function checkQuizOneAnswer(){
-     //when user clicks the correct answer, play the corresponding sound
-     answerButtons.forEach((answerButton) => {
-        answerButton.addEventListener("click", (e) => {
-            if(e.target.textContent === eightiesQuizQuestions[currentQuestionIdx].correctAnswer){
-                correctSound.play();
-                correctSound.volume = .5;
-                // answerButton.classList.add("correct");
-                // answerButton.classList.remove("correct");
+function checkQuizOneAnswer() {
+    answerButtons.forEach((answerButton) => {
+        if (!answerButton.hasListener) {
+            answerButton.addEventListener("click", (e) => {
+                if (e.target.textContent === eightiesQuizQuestions[currentQuestionIdx].correctAnswer) {
+                    correctSound.volume = 0.5;
+                    correctSound.play();
+                } else {
+                    incorrectSound.volume = 0.5;
+                    incorrectSound.play();
+                    lives--;
+                    attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
+                }
 
-            //when user clicks a wrong answer, play the corresponding sound    
-            }else if(e.target.textContent !== eightiesQuizQuestions[currentQuestionIdx].correctAnswer){
-                incorrectSound.play();
-                incorrectSound.volume = .5;
-                lives--;
-                attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
+                
+                if (currentQuestionIdx + 1 >= eightiesQuizQuestions.length) {
+                    currentQuestionIdx = 0;
+                    winner = true;
+                    winningSound.play();
+                    winningSound.volume = .25;
+                } else {
+                    currentQuestionIdx++; 
+                }
+                
 
+                handleQuizOneQuestion(currentQuestionIdx);
+                loseGame();
+            });
 
-                // answerButton.classList.add("incorrect");
-                // answerButton.classList.remove("incorrect");
-            }
-            //control whether the game increments to the next question in the array or not
-            // if the next index is more than the length of the array; reset the game
-            if(currentQuestionIdx === eightiesQuizQuestions.length - 1){
-                        currentQuestionIdx = 0;
-                    }else{
-                        currentQuestionIdx++;
-            }
-            //index is incrementing exponentially and i am trying to use remove event listener but still not working
-            handleQuizOneQuestion(currentQuestionIdx);
-            loseGame();
-        });
-    })
+            answerButton.hasListener = true; 
+        }
+    });
 }
 
 function loseGame(){
-    if(lives < 1){
+    if(!winner && lives < 1){
         losingSound.play();
-        losingSound.volume = .5;
-        container.addClassList("hide");
-        playAgainBtn.removeClassList("hide");
+        losingSound.volume = .25;
+        answerButtons.classList.remove("hide");
+        playAgainBtn.classList.remove("hide");
     }
     return;
 }
