@@ -1,32 +1,9 @@
-//Game Choice: Music-Themed Quiz
-//Objective: 
-    // Player attempts to answer 10 questions based on music trivia. This game will be on the style of a Buzzfeed quiz but
-        //if the player gets three questions wrong, the game ends
-//Game: 
-    //Create a list of 14 music trivia questions to be stored in an array of objects
-        //The questions presented to the player will be a mix of true/false and multiple choice
-    //present one question at a time to the player - if question is answered correctly, the next question appears
-        //If the question is answered incorrectly, one of the player's three "lives" is removed
-            //Include sound effects for when the player correctly answers a question, when they incorrectly answer a question and when they win or lose the game
-            //Create a counter that starts at three and decrements by one when a question is answered incorrectly
-    //Create a score counter that tallies the player's score - they receive 10 points for each question that is answered correctly
-        //If the player makes it to the end of the game, present them with a congratulatory message and their final score
-    //Include a replay button at the end of the game that appears regardless of whether the player wins or loses
-
-
-//SKILLS TO-DO LIST
-//game should open to screen with the two options for gameplay; 
-    // once player selects which era they would like to play; the questions container should appear
-//learn how to add audio to browser
-//have user choose between multiple answers
-//how to add photos to game
-
 /*-------------- Constants -------------*/
 const startEightiesQuiz = document.getElementById("play-btn-eighties");
 const startOughtsQuiz = document.getElementById("play-btn-modern"); 
 const container = document.getElementById("container");
 const questionEl = document.querySelector("#question");
-const winnerContainer = document.querySelector(".winner-message-container");
+const winnerContainer = document.querySelector(".message-container");
 const quizProgress = document.getElementById("quiz-progress");
 
 const answerButtons = document.querySelectorAll(".answer-btn");
@@ -204,7 +181,7 @@ const oughtsQuizQuestions = [
             {option: "We Are - Jon Batiste"},
             {option: "30 - Adele"}
         ],
-        correctAnswer: "Harry Styles"
+        correctAnswer: "Harry's House - Harry Styles"
     },
     {question: "What does Ed Sheeran name his albums after?", 
         answers:[
@@ -335,7 +312,6 @@ function startQuizTwo(){
 
 function handleQuizOneQuestion(index){
     if(winner) return;
-    //change text content for question container to the elem at the questions array elements quest index
     questionEl.innerHTML = `<p>${eightiesQuizQuestions[index].question}</p>`;
 
     answerBtnOne.innerHTML = "";
@@ -343,7 +319,6 @@ function handleQuizOneQuestion(index){
     answerBtnThree.innerHTML = "";
     answerBtnFour.innerHTML = "";
 
-    //change text content for each answer button to the elem at the questions array.answers index
     eightiesQuizQuestions[index].answers.forEach(() => {
         answerBtnOne.innerHTML = eightiesQuizQuestions[index].answers[0].option;
         answerBtnTwo.innerHTML = eightiesQuizQuestions[index].answers[1].option;
@@ -371,51 +346,19 @@ function checkQuizOneAnswer() {
                 if (currentQuestionIdx + 1 >= eightiesQuizQuestions.length) {
                     currentQuestionIdx = 0;
                     winner = true;
-                    winGameOne();
+                    winGame();
                 } else {
-                    currentQuestionIdx++; 
+                    currentQuestionIdx++;
                 }
                 
 
                 handleQuizOneQuestion(currentQuestionIdx);
-                loseGameOne();
+                loseGame();
             });
 
             answerButton.hasListener = true; 
         }
     });
-}
-
-function loseGameOne(){
-    if(!winner && lives < 1){
-        losingSound.play();
-        losingSound.volume = .25;
-        container.classList.add("hide");
-        winnerContainer.classList.remove("hide");
-        winnerContainer.textContent = "Sorry. You lose :(";
-        document.body.appendChild(playAgainBtn);
-        playAgainBtn.addEventListener("click", playAgain);
-    }
-    return;
-}
-
-function winGameOne(){
-    if (winner = true){
-        winningSound.play();
-        winningSound.volume = .25;
-        container.classList.add("hide");
-        winnerContainer.classList.remove("hide");
-        winnerContainer.textContent = "You win!!!";
-        document.body.appendChild(playAgainBtn);
-        playAgainBtn.addEventListener("click", playAgain);
-    }
-}
-
-function playAgain(){
-    startEightiesQuiz.classList.remove("hide");
-    startOughtsQuiz.classList.remove("hide");
-    winnerContainer.classList.add("hide");
-    playAgainBtn.classList.add("hide");
 }
 
 function handleQuizTwoQuestion(index){
@@ -437,33 +380,71 @@ function handleQuizTwoQuestion(index){
 
 function checkQuizTwoAnswer(){
     answerButtons.forEach((answerButton) => {
-        answerButton.addEventListener("click", (e) => {
-            if(e.target.textContent === oughtsQuizQuestions[currentQuestionIdx].correctAnswer){
-                correctSound.play();
-                correctSound.volume = .5;
-                // answerButton.classList.add("correct");
-                console.log("correct!");
-            }else{
-                incorrectSound.play();
-                incorrectSound.volume = .5;
-                lives--;
-                attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
-                // answerButton.classList.add("incorrect");
-                console.log("incorrect :(")
-            }
-            if(currentQuestionIdx === oughtsQuizQuestions.length - 1){
-                currentQuestionIdx = 0;
-            }else{
-                currentQuestionIdx++;
-            }
-            handleQuizTwoQuestion(currentQuestionIdx);
-        });
-    })
+        if (!answerButton.hasListener) {
+            answerButton.addEventListener("click", (e) => {
+                if (e.target.textContent === oughtsQuizQuestions[currentQuestionIdx].correctAnswer) {
+                    correctSound.volume = 0.5;
+                    correctSound.play();
+                } else {
+                    incorrectSound.volume = 0.5;
+                    incorrectSound.play();
+                    lives--;
+                    attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
+                }
+
+                
+                if (currentQuestionIdx + 1 >= oughtsQuizQuestions.length) {
+                    currentQuestionIdx = 0;
+                    winner = true;
+                    winGame();
+                } else {
+                    currentQuestionIdx++; 
+                }
+                
+
+                handleQuizTwoQuestion(currentQuestionIdx);
+                loseGame();
+            });
+
+            answerButton.hasListener = true; 
+        }
+    });
 }
 
+function loseGame(){
+    if(!winner && lives < 1){
+        losingSound.play();
+        losingSound.volume = .25;
+        container.classList.add("hide");
+        winnerContainer.classList.remove("hide");
+        winnerContainer.textContent = "Sorry. You lose :(";
+        document.body.appendChild(playAgainBtn);
+        playAgainBtn.addEventListener("click", playAgain);
+    }
+    return;
+}
 
+function winGame(){
+    if (winner = true){
+        winningSound.play();
+        winningSound.volume = .25;
+        container.classList.add("hide");
+        winnerContainer.classList.remove("hide");
+        winnerContainer.textContent = "You win!!!";
+        document.body.appendChild(playAgainBtn);
+        playAgainBtn.addEventListener("click", playAgain);
+    }
+}
+
+function playAgain(){
+    currentQuestionIdx = 0;
+    lives = 3;
+    startEightiesQuiz.classList.remove("hide");
+    startOughtsQuiz.classList.remove("hide");
+    winnerContainer.classList.add("hide");
+    playAgainBtn.classList.add("hide");
+}
 
 /*----------- Event Listeners ----------*/
 startEightiesQuiz.addEventListener("click", startQuizOne)
 startOughtsQuiz.addEventListener("click", startQuizTwo)
-//document.getElementById("play-again-btn").addEventListener("click", )

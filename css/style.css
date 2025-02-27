@@ -34,7 +34,7 @@ body{
     margin: auto;
 }
 
-.winner-message-container{
+.message-container{
     color: black;
     display: flex;
     padding: 20px;
@@ -52,14 +52,15 @@ body{
     align-items: center;
     margin: 10px;
     font-size: 15px;
-    border: 5px solid rgba(64, 34, 0, 0.1);
-    width: 100px;
-    height: 100px;
+    background-color: #f5d6a4;
+    border: 2px solid white;
+    width: 200px;
+    height: 200px;
     border-radius: 25%;
 }
 
 .btn:hover, .answer-btn:hover{
-    border: 5px solid, rgba(77, 45, 6, 0.5);
+    border: 3px solid, #a88956;
     cursor: pointer;
 }
 
@@ -124,6 +125,15 @@ body{
 
 .play-again-btn{
     margin: 20px auto;
+    width: 100px;
+    height: 100px;
+    background-color: #73161e;
+    color: white;
+}
+
+.play-again-btn:hover{
+    border: 3px solid, black;
+    cursor: pointer;
 }
 
 .hide{
