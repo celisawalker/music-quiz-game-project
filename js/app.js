@@ -28,6 +28,7 @@ const container = document.getElementById("container");
 const questionEl = document.querySelector("#question");
 const quizProgress = document.getElementById("quiz-progress");
 const answerButtons = document.querySelectorAll(".answer-btn");
+const playAgainBtn = document.getElementById("play-again-btn");
 
 const answerBtnOne = document.querySelector(".option-one")
 const answerBtnTwo = document.querySelector(".option-two")
@@ -298,9 +299,11 @@ let attemptsRemaining = document.querySelector(".lives-counter");
 
 let currentQuestionIdx = 0;
 let lives = 3;
+winner = false;
 
 correctSound = new Audio("assets/correct-6033.mp3");
 incorrectSound = new Audio("assets/wronganswer-37702.mp3");
+losingSound = new Audio("assets/cartoon-trombone-sound-effect-241387.mp3");
 
 /*----- Cached Element References  -----*/
 
@@ -371,11 +374,22 @@ function checkQuizOneAnswer(){
                     }else{
                         currentQuestionIdx++;
             }
-             handleQuizOneQuestion(currentQuestionIdx)
+            //index is incrementing exponentially and i am trying to use remove event listener but still not working
+            handleQuizOneQuestion(currentQuestionIdx);
+            loseGame();
         });
     })
 }
 
+function loseGame(){
+    if(lives < 1){
+        losingSound.play();
+        losingSound.volume = .5;
+        container.addClassList("hide");
+        playAgainBtn.removeClassList("hide");
+    }
+    return;
+}
 // function nextQuestion(){
 //     if(currentQuestionIdx === eightiesQuizQuestions.length - 1){
 //         currentQuestionIdx = 0;
