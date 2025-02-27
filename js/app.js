@@ -194,7 +194,7 @@ const oughtsQuizQuestions = [
     {question: "Which album won Album of the Year at the Grammy Awards in 2023?", 
         answers: [
             {option: "Harry's House - Harry Styles"},
-            {option: "Midnights" - "Taylor Swift",},
+            {option: "Midnights - Taylor Swift",},
             {option: "We Are - Jon Batiste"},
             {option: "30 - Adele"}
         ],
@@ -293,10 +293,14 @@ const oughtsQuizQuestions = [
     }
 ]
 /*---------- Variables (state) ---------*/
-let score = 0;
-let lives = 0;
+let attemptsRemaining = document.querySelector(".lives-counter");
+
 
 let currentQuestionIdx = 0;
+let lives = 3;
+
+correctSound = new Audio("assets/correct-6033.mp3");
+incorrectSound = new Audio("assets/wronganswer-37702.mp3");
 
 /*----- Cached Element References  -----*/
 
@@ -306,6 +310,8 @@ function startQuizOne(){
     startEightiesQuiz.classList.add("hide");
     startOughtsQuiz.classList.add("hide");
     container.classList.remove('hide');
+    
+    attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
     handleQuizOneQuestion(currentQuestionIdx);
 }
 
@@ -313,17 +319,13 @@ function startQuizTwo(){
     startEightiesQuiz.classList.add("hide");
     startOughtsQuiz.classList.add("hide");
     container.classList.remove('hide');
+
+    attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
     handleQuizTwoQuestion(currentQuestionIdx);
 }
 
 function handleQuizOneQuestion(index){
-    eightiesQuizQuestions.forEach((question) => {
-        quizProgress.innerHTML += "<span></span>";
-    });
-    let spans = document.querySelectorAll("span");
-    for(let i = 0; i <= index; i++){
-        spans[i].classList.add("seen");
-    }
+    //change text content for question container to the elem at the questions array elements quest index
     questionEl.innerHTML = `<p>${eightiesQuizQuestions[index].question}</p>`;
 
     answerBtnOne.innerHTML = "";
@@ -331,64 +333,103 @@ function handleQuizOneQuestion(index){
     answerBtnThree.innerHTML = "";
     answerBtnFour.innerHTML = "";
 
-    eightiesQuizQuestions[index].answers.forEach((answer) => {
+    //change text content for each answer button to the elem at the questions array.answers index
+    eightiesQuizQuestions[index].answers.forEach(() => {
         answerBtnOne.innerHTML = eightiesQuizQuestions[index].answers[0].option;
         answerBtnTwo.innerHTML = eightiesQuizQuestions[index].answers[1].option;
         answerBtnThree.innerHTML = eightiesQuizQuestions[index].answers[2].option;
         answerBtnFour.innerHTML = eightiesQuizQuestions[index].answers[3].option;
     })
-    
-    answerButtons.forEach((answerButton) => {
+    checkQuizOneAnswer();
+}
+
+function checkQuizOneAnswer(){
+     //when user clicks the correct answer, play the corresponding sound
+     answerButtons.forEach((answerButton) => {
         answerButton.addEventListener("click", (e) => {
-            if(e.target.textContent === eightiesQuizQuestions[index].correctAnswer){
-                answerButton.classList.add("correct");
-            }else{
-                answerButton.classList.add("incorrect");
+            if(e.target.textContent === eightiesQuizQuestions[currentQuestionIdx].correctAnswer){
+                correctSound.play();
+                correctSound.volume = .5;
+                // answerButton.classList.add("correct");
+                // answerButton.classList.remove("correct");
+
+            //when user clicks a wrong answer, play the corresponding sound    
+            }else if(e.target.textContent !== eightiesQuizQuestions[currentQuestionIdx].correctAnswer){
+                incorrectSound.play();
+                incorrectSound.volume = .5;
+                lives--;
+                attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
+
+
+                // answerButton.classList.add("incorrect");
+                // answerButton.classList.remove("incorrect");
             }
+            //control whether the game increments to the next question in the array or not
+            // if the next index is more than the length of the array; reset the game
             if(currentQuestionIdx === eightiesQuizQuestions.length - 1){
-                currentQuestionIdx = 0;
-            }else{
-                currentQuestionIdx++;
+                        currentQuestionIdx = 0;
+                    }else{
+                        currentQuestionIdx++;
             }
-            handleQuizOneQuestion(index);
+             handleQuizOneQuestion(currentQuestionIdx)
         });
     })
 }
 
+// function nextQuestion(){
+//     if(currentQuestionIdx === eightiesQuizQuestions.length - 1){
+//         currentQuestionIdx = 0;
+//     }else{
+//         currentQuestionIdx++
+//         answerBtnOne.textContent = 
+//     }
+//     handleQuizOneQuestion(currentQuestionIdx);
+// }
+
 function handleQuizTwoQuestion(index){
-    oughtsQuizQuestions.forEach((question) => {
-        quizProgress.innerHTML += "<span></span>";
-    });
-    let spans = document.querySelectorAll("span");
-    for(let i = 0; i <= index; i++){
-        spans[i].classList.add("seen");
-    }
     questionEl.innerHTML = `<p>${oughtsQuizQuestions[index].question}</p>`;
 
-    oughtsQuizQuestions[index].answers.forEach((answer) => {
+    answerBtnOne.innerHTML = "";
+    answerBtnTwo.innerHTML = "";
+    answerBtnThree.innerHTML = "";
+    answerBtnFour.innerHTML = "";
+
+    oughtsQuizQuestions[index].answers.forEach(() => {
         answerBtnOne.innerHTML = oughtsQuizQuestions[index].answers[0].option;
         answerBtnTwo.innerHTML = oughtsQuizQuestions[index].answers[1].option;
         answerBtnThree.innerHTML = oughtsQuizQuestions[index].answers[2].option;
         answerBtnFour.innerHTML = oughtsQuizQuestions[index].answers[3].option;
     })
-    
+    checkQuizTwoAnswer();
+}
+
+function checkQuizTwoAnswer(){
     answerButtons.forEach((answerButton) => {
         answerButton.addEventListener("click", (e) => {
-            if(e.target.textContent === oughtsQuizQuestions[index].correctAnswer){
-                answerButton.classList.add("correct");
+            if(e.target.textContent === oughtsQuizQuestions[currentQuestionIdx].correctAnswer){
+                correctSound.play();
+                correctSound.volume = .5;
+                // answerButton.classList.add("correct");
                 console.log("correct!");
             }else{
-                answerButton.classList.add("incorrect");
+                incorrectSound.play();
+                incorrectSound.volume = .5;
+                lives--;
+                attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
+                // answerButton.classList.add("incorrect");
                 console.log("incorrect :(")
             }
+            if(currentQuestionIdx === oughtsQuizQuestions.length - 1){
+                currentQuestionIdx = 0;
+            }else{
+                currentQuestionIdx++;
+            }
+            handleQuizTwoQuestion(currentQuestionIdx);
         });
     })
 }
 
 
-// function selectAnswer(){
-
-// }
 
 /*----------- Event Listeners ----------*/
 startEightiesQuiz.addEventListener("click", startQuizOne)

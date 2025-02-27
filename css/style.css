@@ -106,14 +106,13 @@ body{
     gap: 10px;
 }
 
-.next{
+.lives-counter{
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: auto;
-    height: 50px;
-    width: 50px;;
+    justify-content: center;
+    color: white;
 }
+
 #play-again-btn{
     margin: 20px auto;
 }
