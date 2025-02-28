@@ -158,12 +158,12 @@ const eightiesQuizQuestions = [
 const oughtsQuizQuestions = [
     {question: "What is the most decorated rap song in Grammy Awards history?", 
      answers:[
-        {option: "Drake"},
-        {option: "Kendrick Lamar"},
-        {option: "Lil Wayne"},
-        {option: "Eminem"}
+        {option: "Drake - One Dance"},
+        {option: "Kendrick Lamar - Not Like Us"},
+        {option: "Lil Wayne - Lollipop"},
+        {option: "Eminem - Lose Yourself"}
         ],
-        correctAnswer: "Kendrick Lamar"
+        correctAnswer: "Kendrick Lamar - Not Like Us"
     },
     {question: "In 2015, members of the Beyhive were disappointed at Beyonce’s loss to which Grammy’s Album of the Year winner?",
         answers: [
