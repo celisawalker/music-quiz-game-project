@@ -454,18 +454,10 @@ function winGame(){
     }
 }
 
-// function playAgain(){
-//     currentQuestionIdx = 0;
-//     lives = 3;
-//     startEightiesQuiz.classList.remove("hide");
-//     startOughtsQuiz.classList.remove("hide");
-//     winnerContainer.classList.add("hide");
-//     playAgainBtn.classList.add("hide");
-// }
-
 function reset(){
    window.location.reload()
 }
+
 /*----------- Event Listeners ----------*/
 startEightiesQuiz.addEventListener("click", startQuizOne)
 startOughtsQuiz.addEventListener("click", startQuizTwo)

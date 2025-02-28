@@ -1,8 +1,3 @@
-:root {
-    --correct: #93e077;
-    --incorrect: #f75a52;
-  }
-
 body{
     background-image: linear-gradient(to left, rgba(255,0,0,0), rgb(241, 211, 119));
     font-family: "Kiwi Maru", serif;
