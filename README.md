@@ -1,8 +1,8 @@
 
 ![quiz game screenshot](images/quiz-game-screenshot.png)
 
-# How Well Do You Know Music?
-This is a quiz game app that allows the player to run test their music knowledge in 15 questions. Players can choose which era of music they would like to be tested on. If the wrong answer is selected three times, the game ends and the user can try again. 
+# Music Trivia Quiz
+This is a quiz app that allows the player to test their music knowledge in 15 questions. Players choose which era of music they would like to be tested on and if the wrong answer is selected three times, the game ends and the user can try again. 
 
 
 
