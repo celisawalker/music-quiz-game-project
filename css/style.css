@@ -4,9 +4,10 @@
   }
 
 body{
-    background-color: #fcf2d4;
+    background-image: linear-gradient(to left, rgba(255,0,0,0), rgb(241, 211, 119));
     font-family: "Kiwi Maru", serif;
     font-style: normal;
+
 }
 
 #heading{
@@ -52,7 +53,8 @@ body{
     align-items: center;
     margin: 10px;
     font-size: 15px;
-    background-color: #f5d6a4;
+    background-color: #ceaa6f;
+    font-size: 18px;
     border: 2px solid white;
     width: 200px;
     height: 200px;
@@ -132,7 +134,7 @@ body{
 }
 
 .play-again-btn:hover{
-    border: 3px solid, black;
+    border: 2px solid, black;
     cursor: pointer;
 }
 

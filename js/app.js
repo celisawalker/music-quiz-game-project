@@ -143,6 +143,15 @@ const eightiesQuizQuestions = [
             {option: "Measure in love"}
         ],
         correctAnswer: "525,000 moments so dear"
+    },
+    {question: "Who sings the 1987 hit,'I Wanna Dance With Somebody'",
+        answers:[
+            {option: "Whitney Houston"},
+            {option: "Cyndi Lauper"},
+            {option: "Diana Ross"},
+            {option: "Janet Jackson"}
+        ],
+        correctAnswer: "Whitney Houston"
     }
 ]
 
@@ -273,6 +282,15 @@ const oughtsQuizQuestions = [
         { option: "let's take it there"}
         ],
         correctAnswer: "let's take it from the top"
+    },
+    {question: "What is the name of the Olivia Rodrigo song that held the number one spot on the Billboard Hot 100 for eight consecutive weeks?",
+        answers: [
+            {option: "good 4 u"},
+            {option: "deja vu"},
+            {option: "drivers license"},
+            {option: "traitor"}
+        ],
+        correctAnswer: "drivers license"
     }
 ]
 /*---------- Variables (state) ---------*/
@@ -419,7 +437,7 @@ function loseGame(){
         winnerContainer.classList.remove("hide");
         winnerContainer.textContent = "Sorry. You lose :(";
         document.body.appendChild(playAgainBtn);
-        playAgainBtn.addEventListener("click", playAgain);
+        playAgainBtn.addEventListener("click", reset);
     }
     return;
 }
@@ -432,19 +450,22 @@ function winGame(){
         winnerContainer.classList.remove("hide");
         winnerContainer.textContent = "You win!!!";
         document.body.appendChild(playAgainBtn);
-        playAgainBtn.addEventListener("click", playAgain);
+        playAgainBtn.addEventListener("click", reset);
     }
 }
 
-function playAgain(){
-    currentQuestionIdx = 0;
-    lives = 3;
-    startEightiesQuiz.classList.remove("hide");
-    startOughtsQuiz.classList.remove("hide");
-    winnerContainer.classList.add("hide");
-    playAgainBtn.classList.add("hide");
-}
+// function playAgain(){
+//     currentQuestionIdx = 0;
+//     lives = 3;
+//     startEightiesQuiz.classList.remove("hide");
+//     startOughtsQuiz.classList.remove("hide");
+//     winnerContainer.classList.add("hide");
+//     playAgainBtn.classList.add("hide");
+// }
 
+function reset(){
+   window.location.reload()
+}
 /*----------- Event Listeners ----------*/
 startEightiesQuiz.addEventListener("click", startQuizOne)
 startOughtsQuiz.addEventListener("click", startQuizTwo)
