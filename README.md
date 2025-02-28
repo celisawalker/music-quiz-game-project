@@ -10,6 +10,9 @@ This is a quiz app that allows the player to test their music knowledge in 15 qu
 
 [quiz]: https://celisawalker.github.io/music-quiz-game-project/
 
+## Attributions
+Attributions include Kiwi Maru font hosted on Google Fonts. https://fonts.google.com/share?selection.family=Kiwi+Maru
+
 ## Technologies Used
 * HTML
 * CSS
