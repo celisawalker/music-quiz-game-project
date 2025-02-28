@@ -117,14 +117,14 @@ const eightiesQuizQuestions = [
         ],
         correctAnswer: "Milli Vanilli"
     },
-    {question: "What artist won the first-ever Grammy for Best R&B Album?",
+    {question: "Which artist won the first-ever Grammy for Best R&B Album?",
         answers:[
             {option: "Babyface"},
             {option: "Toni Braxton"},
             {option: "Boyz II Men"},
             {option: "TLC"}
         ],
-        correctAnswer: "TLC"
+        correctAnswer: "Boyz II Men"
     },
     {question: "What song from The Lion King won the Academy Award for Best Original Song in 1994?",
         answers:[
