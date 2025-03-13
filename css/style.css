@@ -1,15 +1,22 @@
 body{
-    background-image: linear-gradient(to left, rgba(255,0,0,0), rgb(241, 211, 119));
+    background-image: url("/images/earphones-bg.jpg");
     font-family: "Kiwi Maru", serif;
     font-style: normal;
 
 }
 
 #heading{
-    margin: 20px 30px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+    padding: 30px;
+    border: 1px solid #4f2e05;
+    border-radius: 15px;
+    box-shadow: 5px 5px #4f2e05;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 40%;
 }
 
 #game-play-btns{
@@ -24,10 +31,12 @@ body{
     width: 500px;
     max-width: 80%;
     background-color: #4f2e05;
+    opacity: .8;
     padding: 20px;
     border-radius: 25px;
     box-shadow: 0 0 5px 2px;
     margin: auto;
+    margin-bottom: 30px;
 }
 
 .message-container{
@@ -47,8 +56,9 @@ body{
     justify-content: center;
     align-items: center;
     margin: 10px;
+    margin-top: 20px;
     font-size: 15px;
-    background-color: #ceaa6f;
+    /* background-image:linear-gradient(to left, rgba(255,0,0,0), rgb(130, 96, 4)); */
     font-size: 18px;
     border: 2px solid white;
     width: 150px;
@@ -58,7 +68,8 @@ body{
 
 
 .btn:hover, .answer-btn:hover{
-    border: 3px solid, #a88956;
+    border: 3px solid, black;
+    opacity: 1;
     cursor: pointer;
 }
 
@@ -115,6 +126,24 @@ body{
 .play-again-btn:hover{
     border: 2px solid, black;
     cursor: pointer;
+}
+
+#play-btn-eighties{
+    background-image: url("/images/cd-pic.jpg");
+    background-size: contain;
+    opacity: .85;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+#play-btn-modern{
+    background-image: url("/images/spotify-pic.jpg");
+    background-size: contain;
+    opacity: .85;
+    font-size: 20px;
+    color: white;
+    -webkit-text-stroke: .5px black;
+    font-weight: bolder;
 }
 
 .hide{

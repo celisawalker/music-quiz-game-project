@@ -2,6 +2,7 @@
 const startEightiesQuiz = document.getElementById("play-btn-eighties");
 const startOughtsQuiz = document.getElementById("play-btn-modern"); 
 const container = document.getElementById("container");
+const heading = document.getElementById("heading");
 const questionEl = document.querySelector("#question");
 const winnerContainer = document.querySelector(".message-container");
 const quizProgress = document.getElementById("quiz-progress");
@@ -313,7 +314,7 @@ winningSound = new Audio("assets/winning-218995.mp3");
 function startQuizOne(){
     startEightiesQuiz.classList.add("hide");
     startOughtsQuiz.classList.add("hide");
-    container.classList.remove('hide');
+    container.classList.remove("hide");
     
     attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
     handleQuizOneQuestion(currentQuestionIdx);
@@ -322,7 +323,7 @@ function startQuizOne(){
 function startQuizTwo(){
     startEightiesQuiz.classList.add("hide");
     startOughtsQuiz.classList.add("hide");
-    container.classList.remove('hide');
+    container.classList.remove("hide");
 
     attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
     handleQuizTwoQuestion(currentQuestionIdx);
@@ -351,15 +352,14 @@ function checkQuizOneAnswer() {
         if (!answerButton.hasListener) {
             answerButton.addEventListener("click", (e) => {
                 if (e.target.textContent === eightiesQuizQuestions[currentQuestionIdx].correctAnswer) {
-                    correctSound.volume = 0.5;
+                    correctSound.volume = 0.25;
                     correctSound.play();
                 } else {
-                    incorrectSound.volume = 0.5;
+                    incorrectSound.volume = 0.25;
                     incorrectSound.play();
                     lives--;
                     attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
                 }
-
                 
                 if (currentQuestionIdx + 1 >= eightiesQuizQuestions.length) {
                     currentQuestionIdx = 0;
@@ -401,10 +401,10 @@ function checkQuizTwoAnswer(){
         if (!answerButton.hasListener) {
             answerButton.addEventListener("click", (e) => {
                 if (e.target.textContent === oughtsQuizQuestions[currentQuestionIdx].correctAnswer) {
-                    correctSound.volume = 0.5;
+                    correctSound.volume = 0.25;
                     correctSound.play();
                 } else {
-                    incorrectSound.volume = 0.5;
+                    incorrectSound.volume = 0.25;
                     incorrectSound.play();
                     lives--;
                     attemptsRemaining.textContent = `Attempts Remaining: ${lives}`;
